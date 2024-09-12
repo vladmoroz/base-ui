@@ -19,8 +19,8 @@ export function useScrollLock(enabled: boolean = true) {
 
     const html = document.documentElement;
     const rootStyle = html.style;
-    const resizeRaf = { current: -1, previous: -1 };
 
+    let resizeRaf: number;
     let scrollX: number;
     let scrollY: number;
 
@@ -78,12 +78,8 @@ export function useScrollLock(enabled: boolean = true) {
 
     const handleResize = () => {
       cleanup();
-
-      resizeRaf.current = requestAnimationFrame(() => {
-        cancelAnimationFrame(resizeRaf.previous);
-        resizeRaf.previous = resizeRaf.current;
-        lockScroll();
-      });
+      cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(lockScroll);
     };
 
     lockScroll();
