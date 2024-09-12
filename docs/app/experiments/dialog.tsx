@@ -192,7 +192,7 @@ export default function DialogExperiment() {
   const [dismissible, setDismissible] = React.useState(false);
 
   return (
-    <div className={classes.page}>
+    <div className={classes.page} style={{ background: 'lightblue', height: 800 }}>
       <h1>Dialog</h1>
       <CssTransitionDialogDemo keepMounted={keepMounted} modal={modal} dismissible={dismissible} />
       <CssAnimationDialogDemo keepMounted={keepMounted} modal={modal} dismissible={dismissible} />
