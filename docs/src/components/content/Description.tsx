@@ -12,7 +12,7 @@ export function Description(props: DescriptionProps) {
   return (
     <p
       {...other}
-      className={clsx('Text size-5 weight-1 color-gray', classes.root, props.className)}
+      className={clsx('Text b-size-5 weight-1 color-gray', classes.root, props.className)}
     >
       {text ?? children}
     </p>

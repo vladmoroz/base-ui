@@ -1,21 +1,15 @@
-import * as React from 'react';
 import { Metadata } from 'next';
+import * as React from 'react';
 import { GoogleAnalytics } from 'docs-base/src/components/GoogleAnalytics';
 import { DocsProviders } from './DocsProviders';
-import '../src/styles/style.css';
+import { Favicons } from './Favicons';
 
-interface Props {
-  children: React.ReactNode;
-}
-
-export default function Layout({ children }: Props) {
+export default function Layout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en">
       <head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <link rel="manifest" href="/static/manifest.json" />
-        <link rel="shortcut icon" href="/static/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/180x180.png" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <Favicons />
       </head>
       <body>
         <DocsProviders>

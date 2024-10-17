@@ -1,0 +1,48 @@
+@import './components/Logo.css';
+
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@font-face {
+  font-family: 'Unica 77';
+  font-weight: normal;
+  src: local('Unica_77Trial-Regular');
+}
+
+@font-face {
+  font-family: 'Unica 77';
+  font-weight: 500;
+  src: local('Unica_77Trial-Medium');
+}
+
+@font-face {
+  font-family: 'Unica 77';
+  font-weight: bold;
+  src: local('Unica_77Trial-Bold');
+}
+
+:root {
+  --color-background: #fcfcfd;
+  --color-content: #fff;
+  --color-text: #18181d;
+  --color-text-gray: #0007149f;
+  --color-link: oklch(47% 0.19 264);
+  --color-gridline: #e2e3e6;
+}
+
+html {
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: oklch(80% 0.2 264 / 50%);
+}
+
+body {
+  font-size: 17px;
+  line-height: 24px;
+}

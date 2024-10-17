@@ -4,9 +4,11 @@ import * as url from 'url';
 import * as fs from 'fs';
 // eslint-disable-next-line no-restricted-imports
 import withDocsInfra from '@mui/monorepo/docs/nextConfigDocsInfra.js';
+import nextMdx from '@next/mdx';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const workspaceRoot = path.resolve(currentDirectory, '../');
+const withMdx = nextMdx();
 
 /**
  * @returns {{version: string}}
@@ -20,6 +22,8 @@ const rootPackage = loadPackageJson();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  trailingSlash: false,
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   env: {
     // docs-infra
     LIB_VERSION: rootPackage.version,
@@ -67,4 +71,4 @@ const nextConfig = {
   },
 };
 
-export default withDocsInfra(nextConfig);
+export default withDocsInfra(withMdx(nextConfig));

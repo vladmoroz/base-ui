@@ -38,6 +38,8 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-redeclare': 'off',
+    'react/no-danger': 'off',
+    'no-irregular-whitespace': 'off',
   },
   overrides: [
     ...baseline.overrides.filter(

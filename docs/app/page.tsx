@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { BaseUIIcon } from 'docs-base/src/icons/BaseUI';
+import '../src/styles/style.css';
 
 export default function Home() {
   return (
@@ -21,13 +22,13 @@ export default function Home() {
       <div className="mb-8">
         <BaseUIIcon />
       </div>
-      <h1 className="Text size-7 mb-2">
+      <h1 className="Text b-size-7 mb-2">
         Unstyled UI components for building accessible web apps and design systems.
       </h1>
-      <p className="Text size-5 color-gray weight-1 mb-8">
+      <p className="Text b-size-5 color-gray weight-1 mb-8">
         From the creators of Radix, Floating UI, and MUI.
       </p>
-      <Link className="Link Text size-4" href="/getting-started/overview">
+      <Link className="Link Text b-size-4" href="/getting-started/overview">
         Documentation
       </Link>
     </div>
