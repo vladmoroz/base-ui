@@ -1,0 +1,84 @@
+.RootLayout {
+  --root-layout-margin: 1.5rem;
+  --root-layout-width: 1330px;
+  position: relative;
+  z-index: 0;
+  padding-left: var(--root-layout-margin);
+  padding-right: var(--root-layout-margin);
+
+  @media (min-width: 640px) {
+    --root-layout-margin: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    --root-layout-margin: 3.5rem;
+  }
+}
+
+.RootLayoutContainer {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100dvh;
+  max-width: 1330px;
+  padding-top: var(--root-layout-margin);
+  padding-bottom: var(--root-layout-margin);
+}
+
+.RootLayoutContent {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  background-color: var(--color-content);
+}
+
+.RootLayoutGridlineTop {
+  position: absolute;
+  top: var(--root-layout-margin);
+  left: 0;
+  right: 0;
+  height: 1px;
+  margin-top: -1px;
+  background-color: var(--color-gridline);
+}
+
+.RootLayoutGridlineBottom {
+  position: absolute;
+  bottom: var(--root-layout-margin);
+  left: 0;
+  right: 0;
+  height: 1px;
+  margin-bottom: -1px;
+  background-color: var(--color-gridline);
+}
+
+.RootLayoutGridlineLeft {
+  position: absolute;
+  left: 0;
+  top: -1000px; /* overscroll */
+  bottom: -1000px;
+  width: 1px;
+  background-color: var(--color-gridline);
+
+  @media (min-width: 320px) {
+    position: fixed;
+    left: calc(50% - min(1330px, calc(100vw - var(--root-layout-margin) * 2)) / 2);
+  }
+}
+
+.RootLayoutGridlineRight {
+  position: absolute;
+  right: 0;
+  top: -1000px; /* overscroll */
+  bottom: -1000px;
+  width: 1px;
+  background-color: var(--color-gridline);
+
+  @media (min-width: 320px) {
+    position: fixed;
+    right: calc(50% - min(1330px, calc(100vw - var(--root-layout-margin) * 2)) / 2);
+  }
+}
