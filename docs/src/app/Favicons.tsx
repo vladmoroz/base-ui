@@ -16,7 +16,7 @@ export function Favicons() {
         <React.Fragment>
           {/* Safari gets a different favicon because it messes up the original one in dark mode */}
           <link rel="icon" href="/static/favicon-safari.ico" sizes="32x32" />
-          <link rel="icon" href="/static/favicon.svg" id="favicon" type="image/svg+xml" />
+          <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
         </React.Fragment>
       )}
 
