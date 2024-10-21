@@ -13,7 +13,7 @@ export default {
         'color-content': 'var(--color-content)',
         'color-link': 'var(--color-link)',
         'color-gray': 'var(--color-gray)',
-        'color-separator': 'var(--color-separator)',
+        'color-border': 'var(--color-border)',
       },
       fontFamily: {
         sans: '"Unica 77", system-ui',

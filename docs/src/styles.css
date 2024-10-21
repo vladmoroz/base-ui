@@ -6,13 +6,25 @@
 @import 'tailwindcss/utilities';
 
 :root {
-  --color-background: #fcfcfd;
   --color-content: #fff;
-  --color-foreground: #18181d;
-  --color-gray: oklch(12.7% 0.028 264 / 67%);
-  --color-separator: #131c3a40;
-  --color-link: oklch(47% 0.19 264);
-  --color-gridline: #e2e3e6;
+  --color-background: oklch(98% 0.25% 264);
+  --color-foreground: oklch(21% 2% 264);
+  --color-selection: oklch(80% 0.2 264 / 60%);
+  --color-gray: oklch(12.7% 6% 264 / 67%);
+  --color-link: oklch(47% 50% 264);
+  --color-border: oklch(20% 12% 264 / 25%);
+  --color-gridline: oklch(91.6% 1% 264);
+
+  @media (prefers-color-scheme: dark) {
+    --color-content: oklch(12% 2% 264);
+    --color-background: #000;
+    --color-foreground: oklch(90% 2% 264);
+    --color-selection: oklch(50% 0.2 264 / 80%);
+    --color-gray: oklch(90% 6% 264 / 70%);
+    --color-link: oklch(69% 50% 264);
+    --color-border: oklch(90% 12% 264 / 35%);
+    --color-gridline: oklch(21.6% 1% 264);
+  }
 }
 
 html {
@@ -28,5 +40,5 @@ body {
 }
 
 ::selection {
-  background-color: oklch(80% 0.2 264 / 60%);
+  background-color: var(--color-selection);
 }
