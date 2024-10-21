@@ -1,0 +1,32 @@
+@import './fonts/fonts.css';
+@import './components/Logo.css';
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --color-background: #fcfcfd;
+  --color-content: #fff;
+  --color-foreground: #18181d;
+  --color-gray: oklch(12.7% 0.028 264 / 67%);
+  --color-separator: #131c3a40;
+  --color-link: oklch(47% 0.19 264);
+  --color-gridline: #e2e3e6;
+}
+
+html {
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-size: 1.0625rem;
+  line-height: 1.5rem;
+}
+
+::selection {
+  background-color: oklch(80% 0.2 264 / 60%);
+}
