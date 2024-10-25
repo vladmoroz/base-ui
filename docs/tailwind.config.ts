@@ -12,6 +12,8 @@ export default {
   theme: {
     extend: {
       colors: {
+        'color-background': 'var(--color-background)',
+        'color-foreground': 'var(--color-foreground)',
         'color-gridline': 'var(--color-gridline)',
         'color-content': 'var(--color-content)',
         'color-link': 'var(--color-link)',
@@ -20,6 +22,7 @@ export default {
       },
       fontFamily: {
         sans: '"Unica 77", system-ui',
+        mono: 'Menlo, Consolas, monospace',
       },
       fontSize: {
         xs: ['0.8125rem', { lineHeight: '1rem', letterSpacing: '0.00125em' }],

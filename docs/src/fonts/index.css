@@ -30,3 +30,18 @@
   font-weight: bold;
   src: url('./fonts/bold.woff2');
 }
+
+@font-face {
+  font-family: 'Menlo';
+  font-weight: normal;
+  src: local('Menlo-Regular');
+  /* Match 13px Unica to 12px Menlo */
+  size-adjust: calc(100% * 12 / 13);
+}
+
+@font-face {
+  font-family: 'Menlo';
+  font-weight: bold;
+  src: local('Menlo-Bold');
+  size-adjust: calc(100% * 12 / 13);
+}

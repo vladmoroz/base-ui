@@ -2,11 +2,10 @@ import * as React from 'react';
 import { existsSync, statSync } from 'node:fs';
 import { readFile, readdir } from 'node:fs/promises';
 import { basename, dirname, extname, resolve, join } from 'node:path';
-import { codeToHtml } from 'shiki';
-import { config } from 'docs/config';
 import type { DemoFile, DemoVariant } from 'docs/src/blocks/Demo';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
+import { codeToHtml } from 'docs/src/syntax-highlighting/index.mjs';
 import { Demo } from './Demo';
 
 export interface DemoLoaderProps {
@@ -65,9 +64,9 @@ async function getThemeFile(): Promise<DemoFile> {
 
   const path = 'src/styles/demo-colors.css';
   const content = await readFile(path, 'utf-8');
-  const prettyContent = await codeToHtml(content, {
+  const prettyContent = codeToHtml(content, {
     lang: 'css',
-    themes: config.shikiThemes,
+    theme: 'base-ui-theme',
   });
 
   return {
@@ -98,9 +97,9 @@ async function getDemoFromFile(
 
   const mainFileLanguage = /\.tsx?$/.test(path) ? 'ts' : 'js';
   const mainContent = await readFile(path, 'utf-8');
-  const mainPrettyContent = await codeToHtml(mainContent, {
+  const mainPrettyContent = codeToHtml(mainContent, {
     lang: `${mainFileLanguage}x`,
-    themes: config.shikiThemes,
+    theme: 'base-ui-theme',
   });
 
   const localImports = getLocalImports(mainContent, dirname(path));
@@ -126,9 +125,9 @@ async function getDemoFromFile(
   const jsFilePath = path.replace(/\.tsx?$/, '.js');
   if (mainFileLanguage === 'ts' && existsSync(jsFilePath)) {
     const jsContent = await readFile(jsFilePath, 'utf-8');
-    const jsPrettyPromise = await codeToHtml(jsContent, {
+    const jsPrettyPromise = codeToHtml(jsContent, {
       lang: 'jsx',
-      themes: config.shikiThemes,
+      theme: 'base-ui-theme',
     });
 
     const jsLocalImports = getLocalImports(mainContent, dirname(jsFilePath));
@@ -199,9 +198,9 @@ async function getDependencyFiles(paths: string[], preferTs: boolean): Promise<D
       }
 
       const content = await readFile(path, 'utf-8');
-      const prettyContent = await codeToHtml(content, {
+      const prettyContent = codeToHtml(content, {
         lang: extension.slice(1),
-        themes: config.shikiThemes,
+        theme: 'base-ui-theme',
       });
 
       const canHaveDependencies = type === 'ts' || type === 'js';

@@ -1,17 +1,9 @@
 'use client';
 import * as React from 'react';
-import clsx from 'clsx';
 import { DemoContext } from 'docs/src/blocks/Demo';
 import { Tabs } from '@base_ui/react/Tabs';
-import classes from './DemoFileSelector.module.css';
 
-export interface DemoFileSelectorProps {
-  className?: string;
-}
-
-export function DemoFileSelector(props: DemoFileSelectorProps) {
-  const { className } = props;
-
+export function DemoFileSelector() {
   const demoContext = React.useContext(DemoContext);
   if (!demoContext) {
     throw new Error('Missing DemoContext');
@@ -29,9 +21,13 @@ export function DemoFileSelector(props: DemoFileSelectorProps) {
 
   return (
     <Tabs.Root value={selectedFile} onValueChange={setSelectedFile}>
-      <Tabs.List className={clsx(className, classes.root)} aria-label="File selector">
+      <Tabs.List className="flex gap-4" aria-label="File selector">
         {files.map((file) => (
-          <Tabs.Tab value={file} key={file.path} className={classes.tab}>
+          <Tabs.Tab
+            className="data-[selected]:text-color-foreground -mx-2 px-2 data-[selected]:font-bold"
+            value={file}
+            key={file.path}
+          >
             {file.name}
           </Tabs.Tab>
         ))}

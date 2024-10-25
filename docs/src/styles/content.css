@@ -112,7 +112,7 @@
       margin-bottom: var(--space-5);
     }
 
-    pre {
+    figure pre {
       box-sizing: border-box;
       overflow: hidden;
       margin: 0;

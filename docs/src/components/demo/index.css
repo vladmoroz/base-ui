@@ -1,0 +1,15 @@
+@layer components {
+  .DemoRoot {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    border-radius: 6px;
+  }
+
+  .DemoSelect {
+    appearance: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+  }
+}

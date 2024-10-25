@@ -3,7 +3,6 @@ import * as React from 'react';
 import { type DemoVariant } from 'docs/src/blocks/Demo';
 import { useDemoContext } from 'docs/src/blocks/Demo/DemoContext';
 import { ToggleButtonGroup } from 'docs/src/design-system/ToggleButtonGroup';
-import classes from './DemoVariantSelector.module.css';
 import { useDemoVariantSelectorContext } from './DemoVariantSelectorProvider';
 
 const translations = {
@@ -113,15 +112,14 @@ export function DemoVariantSelector(props: DemoVariantSelectorProps) {
 
   const renderVariantSelector = Object.keys(variantsMap).length > 1;
   const renderLanguageSelector = currentVariantLanguages.length > 1 && showLanguageSelector;
-  const renderSeparator = renderVariantSelector && renderLanguageSelector;
 
   return (
-    <div {...other} className={classes.root}>
+    <div {...other}>
       {renderVariantSelector && (
         <select
+          className="DemoSelect"
           value={selectedLocalVariant.name}
           onChange={handleVariantChange}
-          className={classes.variantSelector}
           aria-label="Styling solution selector"
         >
           {Object.keys(variantsMap).map((variantName) => (
@@ -132,17 +130,14 @@ export function DemoVariantSelector(props: DemoVariantSelectorProps) {
         </select>
       )}
 
-      {renderSeparator && <span role="separator" className={classes.separator} />}
-
-      {renderLanguageSelector && (
+      {/* {renderLanguageSelector && (
         <ToggleButtonGroup
-          className={classes.languages}
           options={currentVariantLanguages}
           value={selectedLocalVariant.language}
           onValueChange={handleLanguageChange}
           aria-label="Language selector"
         />
-      )}
+      )} */}
     </div>
   );
 }

@@ -2,8 +2,6 @@
 import * as React from 'react';
 import { useDemoContext } from 'docs/src/blocks/Demo/DemoContext';
 import { createCodeSandbox } from 'docs/src/blocks/sandbox/createCodeSandbox';
-import { CodesandboxIcon } from 'docs/src/icons/Codesandbox';
-import { IconButton } from 'docs/src/design-system/IconButton';
 
 const COMMIT_REF = process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined;
 const SOURCE_CODE_REPO = process.env.SOURCE_CODE_REPO;
@@ -23,13 +21,12 @@ const cssThemeSetup = `
     <link rel="stylesheet" href="theme.css" />`;
 
 interface CodeSandboxLinkProps {
-  className?: string;
   title: string;
   description?: string;
 }
 
 export function CodeSandboxLink(props: CodeSandboxLinkProps) {
-  const { className, title, description } = props;
+  const { title, description } = props;
 
   const {
     selectedVariant: { files, language, name },
@@ -71,15 +68,9 @@ export function CodeSandboxLink(props: CodeSandboxLinkProps) {
   }, [files, language, name, title, description]);
 
   return (
-    <IconButton
-      className={className}
-      onClick={handleClick}
-      label="Open in CodeSandbox"
-      withTooltip
-      size={2}
-    >
-      <CodesandboxIcon />
-    </IconButton>
+    <button type="button" onClick={handleClick}>
+      CodeSandbox
+    </button>
   );
 }
 
