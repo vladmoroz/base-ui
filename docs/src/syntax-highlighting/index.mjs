@@ -318,9 +318,8 @@ export const theme = {
   ],
 };
 
-export const highlighter = createHighlighter({
-  themes: [theme],
-  langs: ['tsx', 'jsx', 'css'],
-});
-
-export const { codeToHtml } = await highlighter;
+export const getHighlighter = () =>
+  createHighlighter({
+    themes: [theme],
+    langs: ['tsx', 'jsx', 'css'],
+  });

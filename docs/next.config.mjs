@@ -7,16 +7,13 @@ import withDocsInfra from '@mui/monorepo/docs/nextConfigDocsInfra.js';
 import nextMdx from '@next/mdx';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { rehypeDemos } from './src/components/demo/rehypeDemos.mjs';
-import { highlighter } from './src/syntax-highlighting/index.mjs';
+import { getHighlighter } from './src/syntax-highlighting/index.mjs';
 
 const currentDirectory = url.fileURLToPath(new URL('.', import.meta.url));
 const workspaceRoot = path.resolve(currentDirectory, '../');
 const withMdx = nextMdx({
   options: {
-    rehypePlugins: [
-      rehypeDemos,
-      [rehypePrettyCode, { getHighlighter: () => highlighter, theme: 'base-ui-theme' }],
-    ],
+    rehypePlugins: [rehypeDemos, [rehypePrettyCode, { getHighlighter, theme: 'base-ui-theme' }]],
   },
 });
 
