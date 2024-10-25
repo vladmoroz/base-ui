@@ -43,7 +43,7 @@ export function Demo(props: DemoProps) {
         </div>
 
         <Collapsible.Content>
-          <BaseDemo.SourceBrowser />
+          <BaseDemo.SourceBrowser className="CodeBlock" />
         </Collapsible.Content>
 
         {/*

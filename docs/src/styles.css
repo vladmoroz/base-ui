@@ -61,9 +61,14 @@ body {
   background-color: var(--color-selection);
 }
 
-.shiki {
-  font-family: Menlo, Consolas, monospace;
+.CodeBlock {
   font-size: 0.8125rem;
   line-height: 1.25rem;
   padding: 0.75rem 1rem;
+  background-color: var(--color-content);
+
+  & code {
+    /* Reset varying alignment between monospace fonts */
+    display: block;
+  }
 }

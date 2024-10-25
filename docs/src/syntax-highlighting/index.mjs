@@ -3,8 +3,8 @@ import { createHighlighter } from 'shiki';
 /** @type {Parameters<typeof import('shiki').createHighlighter>[0]['themes'][number] } */
 export const theme = {
   name: 'base-ui-theme',
-  bg: 'var(--color-content)',
-  fg: 'var(--color-foreground)',
+  bg: 'transparent',
+  fg: 'inherit',
   settings: [
     {
       scope: ['comment', 'punctuation.definition.comment', 'string.comment'],
