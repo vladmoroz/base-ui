@@ -3,12 +3,9 @@ import * as React from 'react';
 import { Collapsible } from '@base_ui/react/Collapsible';
 import * as BaseDemo from 'docs/src/blocks/Demo';
 import { CopyIcon } from 'docs/src/icons/Copy';
-import { IconButton } from 'docs/src/design-system/IconButton';
-import { Button } from 'docs/src/design-system/Button';
 import { DemoVariantSelector } from './DemoVariantSelector';
 import { DemoFileSelector } from './DemoFileSelector';
 import { CodeSandboxLink } from './CodeSandboxLink';
-import { GitHubLink } from './GitHubLink';
 
 export interface DemoProps {
   variants: BaseDemo.DemoVariant[];
@@ -23,11 +20,11 @@ export function Demo(props: DemoProps) {
   return (
     <BaseDemo.Root variants={demoVariants} className="DemoRoot">
       {/* <ErrorBoundary FallbackComponent={DemoErrorFallback}> */}
-      <BaseDemo.Playground className="bg-color-content flex min-h-[200px] items-center justify-center" />
+      <BaseDemo.Playground className="DemoPlayground" />
       {/* </ErrorBoundary> */}
 
       <Collapsible.Root open={codeOpen} onOpenChange={setCodeOpen}>
-        <div className="text-color-gray border-color-border flex h-9 items-center border-y px-4 font-mono text-xs">
+        <div className="DemoToolbar">
           <DemoFileSelector />
 
           <div className="ml-auto flex items-center gap-4">
@@ -43,7 +40,7 @@ export function Demo(props: DemoProps) {
         </div>
 
         <Collapsible.Content>
-          <BaseDemo.SourceBrowser className="CodeBlock" />
+          <BaseDemo.SourceBrowser className="DemoCodeBlock" />
         </Collapsible.Content>
 
         {/*

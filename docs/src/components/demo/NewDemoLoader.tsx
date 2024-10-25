@@ -5,19 +5,8 @@ import { basename, dirname, extname, resolve, join } from 'node:path';
 import type { DemoFile, DemoVariant } from 'docs/src/blocks/Demo';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
-import { getHighlighter } from 'docs/src/syntax-highlighting/index.mjs';
+import { highlighter } from 'docs/src/syntax-highlighting';
 import { Demo } from './Demo';
-
-// Next.js hot reload doesn't dispose previously created instances of the
-// Shiki highlighter, which leads to server crashes during moderately long
-// work sessions. We declare the highlighter as a property of `globalThis`
-// so that the object persists between hot reloads and doesn't leak memory.
-interface CustomGlobal extends NodeJS.Global {
-  highlighter: Awaited<ReturnType<typeof getHighlighter>>;
-}
-declare let globalThis: CustomGlobal;
-globalThis.highlighter ??= await getHighlighter();
-const { codeToHtml } = globalThis.highlighter;
 
 export interface DemoLoaderProps {
   /** Absolute path to a folder with demos or to a .tsx file with the main demo */
@@ -75,7 +64,7 @@ async function getThemeFile(): Promise<DemoFile> {
 
   const path = 'src/styles/demo-colors.css';
   const content = await readFile(path, 'utf-8');
-  const prettyContent = codeToHtml(content, {
+  const prettyContent = highlighter.codeToHtml(content, {
     lang: 'css',
     theme: 'base-ui-theme',
   });
@@ -108,7 +97,7 @@ async function getDemoFromFile(
 
   const mainFileLanguage = /\.tsx?$/.test(path) ? 'ts' : 'js';
   const mainContent = await readFile(path, 'utf-8');
-  const mainPrettyContent = codeToHtml(mainContent, {
+  const mainPrettyContent = highlighter.codeToHtml(mainContent, {
     lang: `${mainFileLanguage}x`,
     theme: 'base-ui-theme',
   });
@@ -136,7 +125,7 @@ async function getDemoFromFile(
   const jsFilePath = path.replace(/\.tsx?$/, '.js');
   if (mainFileLanguage === 'ts' && existsSync(jsFilePath)) {
     const jsContent = await readFile(jsFilePath, 'utf-8');
-    const jsPrettyPromise = codeToHtml(jsContent, {
+    const jsPrettyPromise = highlighter.codeToHtml(jsContent, {
       lang: 'jsx',
       theme: 'base-ui-theme',
     });
@@ -209,7 +198,7 @@ async function getDependencyFiles(paths: string[], preferTs: boolean): Promise<D
       }
 
       const content = await readFile(path, 'utf-8');
-      const prettyContent = codeToHtml(content, {
+      const prettyContent = highlighter.codeToHtml(content, {
         lang: extension.slice(1),
         theme: 'base-ui-theme',
       });

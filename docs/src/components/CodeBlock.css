@@ -1,0 +1,21 @@
+@layer components {
+  .CodeBlock {
+    cursor: text;
+    padding: 1rem 0.75rem;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    outline: 0;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-blue);
+      outline-offset: -1px;
+    }
+
+    & code {
+      /* Different fonts may introduce vertical alignment issues */
+      display: block;
+    }
+  }
+}

@@ -1,16 +1,20 @@
 @import './fonts/index.css';
 @import './syntax-highlighting/index.css';
 @import './components/demo/index.css';
+@import './components/CodeBlock.css';
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
 :root {
+  --font-mono: 'Menlo', 'Consolas', monospace;
+  --font-sans: 'Unica 77', system-ui, sans-serif;
+
   --color-content: #fff;
   --color-background: oklch(98% 0.25% 264);
   --color-foreground: oklch(21% 2% 264);
-  --color-selection: oklch(80% 0.2 264 / 60%);
+  --color-selection: oklch(80% 0.2 264 / 25%);
   --color-gray: oklch(12.7% 6% 264 / 67%);
   --color-border: oklch(20% 12% 264 / 10%);
   --color-gridline: oklch(91.6% 1% 264);
@@ -19,7 +23,7 @@
   --color-blue: oklch(47% 50% 264);
   --color-red: oklch(54% 70% 31);
   --color-purple: oklch(45% 55% 340);
-  --color-pink: oklch(50% 50% 380);
+  --color-pink: oklch(50% 50% 370);
   --color-violet: oklch(40% 60% 300);
   --color-green: oklch(46% 30% 150);
 
@@ -27,7 +31,7 @@
     --color-content: #000;
     --color-background: #000;
     --color-foreground: oklch(90% 2% 264);
-    --color-selection: oklch(50% 0.2 264 / 80%);
+    --color-selection: oklch(50% 0.2 264 / 40%);
     --color-gray: oklch(90% 6% 264 / 70%);
     --color-border: oklch(90% 12% 264 / 20%);
     --color-gridline: oklch(24% 1% 264);
@@ -36,7 +40,7 @@
     --color-blue: oklch(69% 50% 264);
     --color-red: oklch(80% 70% 31);
     --color-purple: oklch(85% 30% 320);
-    --color-pink: oklch(80% 40% 380);
+    --color-pink: oklch(80% 40% 370);
     --color-violet: oklch(80% 60% 300);
     --color-green: oklch(75% 25% 150);
   }
@@ -59,16 +63,4 @@ body {
 
 ::selection {
   background-color: var(--color-selection);
-}
-
-.CodeBlock {
-  font-size: 0.8125rem;
-  line-height: 1.25rem;
-  padding: 0.75rem 1rem;
-  background-color: var(--color-content);
-
-  & code {
-    /* Reset varying alignment between monospace fonts */
-    display: block;
-  }
 }

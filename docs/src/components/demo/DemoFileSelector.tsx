@@ -21,13 +21,9 @@ export function DemoFileSelector() {
 
   return (
     <Tabs.Root value={selectedFile} onValueChange={setSelectedFile}>
-      <Tabs.List className="flex gap-4" aria-label="File selector">
+      <Tabs.List className="DemoTabsList" aria-label="File selector">
         {files.map((file) => (
-          <Tabs.Tab
-            className="data-[selected]:text-color-foreground -mx-2 px-2 data-[selected]:font-bold"
-            value={file}
-            key={file.path}
-          >
+          <Tabs.Tab className="DemoTab" value={file} key={file.path}>
             {file.name}
           </Tabs.Tab>
         ))}

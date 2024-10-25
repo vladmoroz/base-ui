@@ -21,8 +21,8 @@ export default {
         'color-border': 'var(--color-border)',
       },
       fontFamily: {
-        sans: '"Unica 77", system-ui',
-        mono: 'Menlo, Consolas, monospace',
+        sans: 'var(--font-sans)',
+        mono: 'var(--font-mono)',
       },
       fontSize: {
         xs: ['0.8125rem', { lineHeight: '1rem', letterSpacing: '0.00125em' }],

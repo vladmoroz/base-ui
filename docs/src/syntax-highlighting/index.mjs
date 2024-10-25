@@ -3,7 +3,7 @@ import { createHighlighter } from 'shiki';
 /** @type {Parameters<typeof import('shiki').createHighlighter>[0]['themes'][number] } */
 export const theme = {
   name: 'base-ui-theme',
-  bg: 'transparent',
+  bg: 'var(--color-content)',
   fg: 'inherit',
   settings: [
     {
@@ -318,8 +318,17 @@ export const theme = {
   ],
 };
 
-export const getHighlighter = () =>
-  createHighlighter({
-    themes: [theme],
-    langs: ['tsx', 'jsx', 'css'],
-  });
+// Next.js hot reload doesn't dispose previously created instances of the
+// Shiki highlighter, which leads to server crashes during moderately long
+// work sessions. We instantiate the highlighter as a property of `globalThis`
+// so that the object persists between hot reloads and doesn't leak memory.
+
+// eslint-disable-next-line no-undef
+globalThis.highlighter ??= await createHighlighter({
+  themes: [theme],
+  langs: ['tsx', 'jsx', 'css'],
+});
+
+/** @type {Awaited<ReturnType<typeof import('shiki').createHighlighter>> } */
+// eslint-disable-next-line no-undef
+export const highlighter = globalThis.highlighter;
