@@ -20,9 +20,9 @@
   --color-gridline: oklch(91.6% 1% 264);
 
   --color-navy: oklch(31% 25% 264);
-  --color-blue: oklch(47% 50% 264);
+  --color-blue: oklch(45% 50% 264);
   --color-red: oklch(54% 70% 31);
-  --color-purple: oklch(45% 55% 340);
+  --color-purple: oklch(40% 45% 360);
   --color-pink: oklch(50% 50% 370);
   --color-violet: oklch(40% 60% 300);
   --color-green: oklch(46% 30% 150);
@@ -46,21 +46,7 @@
   }
 }
 
-html {
-  /* macOS overscroll background */
-  background-color: #000;
-}
-
 body {
-  min-width: 360px;
-  font-size: 1.0625rem;
-  line-height: 1.5rem;
-  background-color: var(--color-background);
-  color: var(--color-foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-::selection {
-  background-color: var(--color-selection);
 }

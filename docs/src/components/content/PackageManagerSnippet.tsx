@@ -2,6 +2,7 @@
 import * as React from 'react';
 import * as BasePackageManagerSnippet from '../../blocks/PackageManagerSnippet';
 import classes from './PackageManagerSnippet.module.css';
+import { CodeBlock } from '../CodeBlock';
 
 interface PackageManagerSnippetProps {
   children: React.ReactNode;
@@ -21,16 +22,12 @@ const packageManagers = [
 
 export function PackageManagerSnippet(props: PackageManagerSnippetProps) {
   return (
-    <div className={classes.root}>
+    <div>
       <BasePackageManagerSnippet.Root
         options={packageManagers}
         // eslint-disable-next-line jsx-a11y/control-has-associated-label, react/button-has-type
         renderTab={<button className={classes.tab} />}
-        renderTabsList={(tabsListProps) => (
-          <div className={classes.header}>
-            <div {...tabsListProps} className={classes.tabsList} />
-          </div>
-        )}
+        renderTabsList={(tabsListProps) => <div {...tabsListProps} className={classes.tabsList} />}
       >
         {props.children}
       </BasePackageManagerSnippet.Root>
@@ -41,7 +38,7 @@ export function PackageManagerSnippet(props: PackageManagerSnippetProps) {
 export function Npm(props: React.PropsWithChildren<{}>) {
   return (
     <BasePackageManagerSnippet.Code value="npm">
-      <pre className={classes.code}>{props.children}</pre>
+      <CodeBlock className="mb-5 mt-3" {...props} />
     </BasePackageManagerSnippet.Code>
   );
 }
@@ -49,7 +46,7 @@ export function Npm(props: React.PropsWithChildren<{}>) {
 export function Pnpm(props: React.PropsWithChildren<{}>) {
   return (
     <BasePackageManagerSnippet.Code value="pnpm">
-      <pre className={classes.code}>{props.children}</pre>
+      <CodeBlock className="mb-5 mt-3" {...props} />
     </BasePackageManagerSnippet.Code>
   );
 }
@@ -57,7 +54,7 @@ export function Pnpm(props: React.PropsWithChildren<{}>) {
 export function Yarn(props: React.PropsWithChildren<{}>) {
   return (
     <BasePackageManagerSnippet.Code value="yarn">
-      <pre className={classes.code}>{props.children}</pre>
+      <CodeBlock className="mb-5 mt-3" {...props} />
     </BasePackageManagerSnippet.Code>
   );
 }

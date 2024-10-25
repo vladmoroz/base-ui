@@ -11,8 +11,14 @@ export function DemoSourceBrowser(props: React.HTMLAttributes<HTMLDivElement>) {
   const { selectedFile } = demoContext;
 
   if (selectedFile.prettyContent != null) {
-    // eslint-disable-next-line react/no-danger
-    return <div {...props} dangerouslySetInnerHTML={{ __html: selectedFile.prettyContent }} />;
+    return (
+      <div
+        {...props}
+        data-language={selectedFile.type}
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: selectedFile.prettyContent }}
+      />
+    );
   }
 
   return (

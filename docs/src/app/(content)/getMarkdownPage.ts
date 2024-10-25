@@ -13,6 +13,7 @@ import exportToc from '@stefanprobst/rehype-extract-toc/mdx';
 import { read as readVFile } from 'to-vfile';
 import { matter } from 'vfile-matter';
 import { highlighter } from 'docs/src/syntax-highlighting';
+import { getHighlighter } from 'shiki';
 
 export const DATA_PATH = path.join(process.cwd(), 'data');
 
@@ -50,7 +51,10 @@ export const getMarkdownPage = async (basePath: string, slug: string) => {
     ...jsxRuntime,
     remarkPlugins: [remarkGfm, remarkFrontmatter, remarkMdxFrontmatter],
     rehypePlugins: [
-      [rehypePrettyCode, { highlighter, theme: 'base-ui-theme', grid: false }],
+      [
+        rehypePrettyCode,
+        { getHighlighter: () => highlighter, theme: 'base-ui-theme', grid: false },
+      ],
       rehypeSlug,
       extractToc,
       exportToc,

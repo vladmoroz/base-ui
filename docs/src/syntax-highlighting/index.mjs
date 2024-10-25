@@ -4,7 +4,7 @@ import { createHighlighter } from 'shiki';
 export const theme = {
   name: 'base-ui-theme',
   bg: 'var(--color-content)',
-  fg: 'inherit',
+  fg: 'var(--syntax-default)',
   settings: [
     {
       scope: ['comment', 'punctuation.definition.comment', 'string.comment'],

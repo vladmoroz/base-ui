@@ -1,3 +1,16 @@
+:root {
+  --syntax-default: var(--color-foreground);
+  --syntax-comment: var(--color-gray);
+  --syntax-constant: var(--color-purple);
+  --syntax-entity: var(--color-blue);
+  --syntax-parameter: var(--color-blue);
+  --syntax-tag: var(--color-green);
+  --syntax-keyword: var(--color-pink);
+  --syntax-string: var(--color-navy);
+  --syntax-variable: var(--color-blue);
+  --syntax-invalid: var(--color-red);
+}
+
 /* GitHub-style hues */
 /*
 :root {
@@ -13,11 +26,12 @@
 }
 */
 
-:root {
+[data-language='css'] {
+  --syntax-default: var(--color-purple);
   --syntax-comment: var(--color-gray);
-  --syntax-constant: var(--color-purple);
+  --syntax-constant: var(--color-foreground);
   --syntax-entity: var(--color-blue);
-  --syntax-parameter: var(--color-navy);
+  --syntax-parameter: var(--color-blue);
   --syntax-tag: var(--color-green);
   --syntax-keyword: var(--color-pink);
   --syntax-string: var(--color-navy);
