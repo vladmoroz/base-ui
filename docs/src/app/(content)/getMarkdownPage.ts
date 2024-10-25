@@ -12,7 +12,7 @@ import extractToc, { type Toc } from '@stefanprobst/rehype-extract-toc';
 import exportToc from '@stefanprobst/rehype-extract-toc/mdx';
 import { read as readVFile } from 'to-vfile';
 import { matter } from 'vfile-matter';
-import { config } from 'docs/config';
+import { shikiTheme } from 'docs/shiki.config';
 
 export const DATA_PATH = path.join(process.cwd(), 'data');
 
@@ -49,12 +49,7 @@ export const getMarkdownPage = async (basePath: string, slug: string) => {
   } = await evaluate(mdxSource, {
     ...jsxRuntime,
     remarkPlugins: [remarkGfm, remarkFrontmatter, remarkMdxFrontmatter],
-    rehypePlugins: [
-      [rehypePrettyCode, { theme: config.shikiThemes }],
-      rehypeSlug,
-      extractToc,
-      exportToc,
-    ],
+    rehypePlugins: [[rehypePrettyCode, { theme: shikiTheme }], rehypeSlug, extractToc, exportToc],
   });
 
   return {

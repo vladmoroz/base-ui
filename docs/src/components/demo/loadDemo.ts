@@ -2,7 +2,7 @@ import { existsSync, statSync } from 'node:fs';
 import { readFile, readdir } from 'node:fs/promises';
 import { basename, dirname, extname, resolve } from 'node:path';
 import { codeToHtml } from 'shiki';
-import { config } from 'docs/config';
+import { shikiTheme } from 'docs/shiki.config';
 import { DemoFile, DemoVariant } from 'docs/src/blocks/Demo';
 
 const COMPONENTS_BASE_PATH = 'data/components';
@@ -66,7 +66,7 @@ async function getThemeFile(): Promise<DemoFile> {
   const content = await readFile(path, 'utf-8');
   const prettyContent = await codeToHtml(content, {
     lang: 'css',
-    themes: config.shikiThemes,
+    themes: shikiTheme,
   });
 
   return {
@@ -101,7 +101,7 @@ async function loadSimpleDemo(path: string, variantName: string): Promise<DemoVa
   const mainContent = await readFile(mainFilePath, 'utf-8');
   const mainPrettyContent = await codeToHtml(mainContent, {
     lang: `${mainFileLanguage}x`,
-    themes: config.shikiThemes,
+    themes: shikiTheme,
   });
 
   const localImports = getLocalImports(mainContent, dirname(mainFilePath));
@@ -129,7 +129,7 @@ async function loadSimpleDemo(path: string, variantName: string): Promise<DemoVa
     const jsContent = await readFile(jsFilePath, 'utf-8');
     const jsPrettyPromise = await codeToHtml(jsContent, {
       lang: 'jsx',
-      themes: config.shikiThemes,
+      themes: shikiTheme,
     });
 
     const jsLocalImports = getLocalImports(mainContent, dirname(jsFilePath));
@@ -202,7 +202,7 @@ async function getDependencyFiles(paths: string[], preferTs: boolean): Promise<D
       const content = await readFile(path, 'utf-8');
       const prettyContent = await codeToHtml(content, {
         lang: extension.slice(1),
-        themes: config.shikiThemes,
+        themes: shikiTheme,
       });
 
       const canHaveDependencies = type === 'ts' || type === 'js';

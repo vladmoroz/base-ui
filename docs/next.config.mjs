@@ -56,15 +56,13 @@ const nextConfig = {
   },
   distDir: 'export',
   transpilePackages: ['@mui/monorepo'],
-  ...(process.env.NODE_ENV === 'production'
-    ? {
-        output: 'export',
-      }
-    : {}),
+  ...(process.env.NODE_ENV === 'production' ? { output: 'export' } : {}),
   experimental: {
     esmExternals: true,
     workerThreads: false,
   },
 };
 
-export default withDocsInfra(nextConfig);
+// Remove deprecated options that come from `withDocsInfra()` and cause warnings
+const { optimizeFonts, ...result } = withDocsInfra(nextConfig);
+export default result;
