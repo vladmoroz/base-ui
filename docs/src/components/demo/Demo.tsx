@@ -11,30 +11,30 @@ import { CodeSandboxLink } from './CodeSandboxLink';
 
 export interface DemoProps extends React.ComponentProps<typeof BaseDemo.Root> {
   variants: BaseDemo.DemoVariant[];
-  defaultCodeOpen?: boolean;
+  defaultOpen?: boolean;
 }
 
-export function Demo({ className, defaultCodeOpen = true, title, ...props }: DemoProps) {
-  const [codeOpen, setCodeOpen] = React.useState(defaultCodeOpen);
+export function Demo({ className, defaultOpen = false, title, ...props }: DemoProps) {
+  const [open, setOpen] = React.useState(defaultOpen);
   const [copyTimeout, setCopyTimeout] = React.useState<number>(0);
 
   return (
     <BaseDemo.Root className={clsx('DemoRoot', className)} {...props}>
       <BaseDemo.Playground className="DemoPlayground" />
 
-      <Collapsible.Root open={codeOpen} onOpenChange={setCodeOpen}>
+      <Collapsible.Root open={open} onOpenChange={setOpen}>
         <div className="DemoToolbar">
           <DemoFileSelector />
 
           <div className="ml-auto flex items-center gap-4">
             <DemoVariantSelector className="contents" />
             <CodeSandboxLink
-              className="DemoButton cursor-pointer"
+              className="DemoToolbarLink"
               title="Base UI example"
               description="Base UI example"
             />
             <BaseDemo.SourceCopy
-              className="DemoButton"
+              className="DemoToolbarButton"
               onCopied={() => {
                 window.clearTimeout(copyTimeout);
                 const newTimeout = window.setTimeout(() => {
@@ -52,14 +52,25 @@ export function Demo({ className, defaultCodeOpen = true, title, ...props }: Dem
           </div>
         </div>
 
-        <Collapsible.Content>
-          <BaseDemo.SourceBrowser className="DemoCodeBlock" />
-        </Collapsible.Content>
+        <Collapsible.Content
+          className="DemoCodeBlock"
+          render={
+            <BaseDemo.SourceBrowser
+              onScrollCapture={(event) => {
+                if (event.target instanceof HTMLElement) {
+                  event.currentTarget.setAttribute(
+                    'data-scroll-top',
+                    event.target.scrollTop.toString(),
+                  );
+                }
+              }}
+            />
+          }
+        />
 
-        {/*
-        <Collapsible.Trigger render={<Button />}>
-          {codeOpen ? 'Hide' : 'Show'} code
-        </Collapsible.Trigger> */}
+        <Collapsible.Trigger className="DemoCollapseButton">
+          {open ? 'Hide' : 'Show'} code
+        </Collapsible.Trigger>
       </Collapsible.Root>
     </BaseDemo.Root>
   );
