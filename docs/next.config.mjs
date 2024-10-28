@@ -17,7 +17,15 @@ const withMdx = nextMdx({
   options: {
     rehypePlugins: [
       rehypeDemos,
-      [rehypePrettyCode, { getHighlighter, theme: 'base-ui-theme', grid: false }],
+      [
+        rehypePrettyCode,
+        {
+          getHighlighter,
+          theme: 'base-ui-theme',
+          bypassInlineCode: true,
+          grid: false,
+        },
+      ],
     ],
   },
 });

@@ -15,10 +15,6 @@ export function DemoFileSelector() {
     selectedFile,
   } = demoContext;
 
-  if (files.length < 2) {
-    return null;
-  }
-
   return (
     <Tabs.Root value={selectedFile} onValueChange={setSelectedFile}>
       <Tabs.List className="DemoTabsList" aria-label="File selector">

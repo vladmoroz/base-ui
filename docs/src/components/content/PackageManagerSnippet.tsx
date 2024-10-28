@@ -2,7 +2,7 @@
 import * as React from 'react';
 import * as BasePackageManagerSnippet from '../../blocks/PackageManagerSnippet';
 import classes from './PackageManagerSnippet.module.css';
-import { CodeBlock } from '../CodeBlock';
+import * as CodeBlock from '../CodeBlock';
 
 interface PackageManagerSnippetProps {
   children: React.ReactNode;
@@ -35,26 +35,32 @@ export function PackageManagerSnippet(props: PackageManagerSnippetProps) {
   );
 }
 
-export function Npm(props: React.PropsWithChildren<{}>) {
+export function Npm(props: React.PropsWithChildren) {
   return (
     <BasePackageManagerSnippet.Code value="npm">
-      <CodeBlock className="mb-5 mt-3" {...props} />
+      <CodeBlock.Root className="mb-5 mt-3">
+        <CodeBlock.Pre {...props} />
+      </CodeBlock.Root>
     </BasePackageManagerSnippet.Code>
   );
 }
 
-export function Pnpm(props: React.PropsWithChildren<{}>) {
+export function Pnpm(props: React.PropsWithChildren) {
   return (
     <BasePackageManagerSnippet.Code value="pnpm">
-      <CodeBlock className="mb-5 mt-3" {...props} />
+      <CodeBlock.Root className="mb-5 mt-3">
+        <CodeBlock.Pre {...props} />
+      </CodeBlock.Root>
     </BasePackageManagerSnippet.Code>
   );
 }
 
-export function Yarn(props: React.PropsWithChildren<{}>) {
+export function Yarn(props: React.PropsWithChildren) {
   return (
     <BasePackageManagerSnippet.Code value="yarn">
-      <CodeBlock className="mb-5 mt-3" {...props} />
+      <CodeBlock.Root className="mb-5 mt-3">
+        <CodeBlock.Pre {...props} />
+      </CodeBlock.Root>
     </BasePackageManagerSnippet.Code>
   );
 }

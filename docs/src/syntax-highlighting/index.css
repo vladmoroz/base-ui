@@ -5,7 +5,7 @@
   --syntax-entity: var(--color-blue);
   --syntax-parameter: var(--color-blue);
   --syntax-tag: var(--color-green);
-  --syntax-keyword: var(--color-pink);
+  --syntax-keyword: var(--color-purple);
   --syntax-string: var(--color-navy);
   --syntax-variable: var(--color-blue);
   --syntax-invalid: var(--color-red);
@@ -23,8 +23,7 @@
   --syntax-string: var(--color-navy);
   --syntax-variable: var(--color-red);
   --syntax-invalid: var(--color-red);
-}
-*/
+} */
 
 [data-language='css'] {
   --syntax-default: var(--color-purple);
@@ -33,8 +32,13 @@
   --syntax-entity: var(--color-blue);
   --syntax-parameter: var(--color-blue);
   --syntax-tag: var(--color-green);
-  --syntax-keyword: var(--color-pink);
+  --syntax-keyword: var(--color-purple);
   --syntax-string: var(--color-navy);
   --syntax-variable: var(--color-blue);
   --syntax-invalid: var(--color-red);
+
+  /* Target CSS property names */
+  & [style='color:var(--syntax-constant)']:first-child {
+    --syntax-constant: var(--color-purple);
+  }
 }

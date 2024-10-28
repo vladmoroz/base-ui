@@ -8,21 +8,21 @@ import upperFirst from 'lodash/upperFirst';
 import { highlighter } from 'docs/src/syntax-highlighting';
 import { Demo } from './Demo';
 
-export interface DemoLoaderProps {
+export interface DemoLoaderProps extends Omit<React.ComponentProps<typeof Demo>, 'variants'> {
   /** Absolute path to a folder with demos or to a .tsx file with the main demo */
   path: string;
   /** Modules that are imported into the current scope in order to render the demo */
   scope: Record<string, any>;
 }
 
-export async function DemoLoader({ path, scope }: DemoLoaderProps) {
-  const demoVariants = await loadDemo({ path, scope });
+export async function DemoLoader({ path, scope, ...props }: DemoLoaderProps) {
+  const variants = await loadDemo({ path, scope });
 
-  if (!demoVariants || demoVariants.length === 0) {
+  if (!variants.length) {
     throw new Error(`\nCould not load demo: no demos found in "${path}".`);
   }
 
-  return <Demo variants={demoVariants} />;
+  return <Demo variants={variants} {...props} />;
 }
 
 async function loadDemo({ path, scope }: DemoLoaderProps): Promise<DemoVariant[]> {

@@ -53,7 +53,12 @@ export const getMarkdownPage = async (basePath: string, slug: string) => {
     rehypePlugins: [
       [
         rehypePrettyCode,
-        { getHighlighter: () => highlighter, theme: 'base-ui-theme', grid: false },
+        {
+          getHighlighter: () => highlighter,
+          theme: 'base-ui-theme',
+          bypassInlineCode: true,
+          grid: false,
+        },
       ],
       rehypeSlug,
       extractToc,

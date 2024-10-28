@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PackageManagerSnippet, Npm, Pnpm, Yarn } from './PackageManagerSnippet';
-import { CodeBlock } from '../CodeBlock';
+import * as CodeBlock from '../CodeBlock';
 
 export interface InstallationInstructionsProps {
   componentName: string | string[];
@@ -26,11 +26,13 @@ export function InstallationInstructions(props: InstallationInstructionsProps) {
         <Yarn>yarn add @base_ui/react</Yarn>
       </PackageManagerSnippet>
       <p>Once you have the package installed, import the component.</p>
-      <CodeBlock>
-        {componentNames
-          .map((name) => `import { ${name} } from '@base_ui/react/${name}';`)
-          .join('\n')}
-      </CodeBlock>
+      <CodeBlock.Root>
+        <CodeBlock.Pre>
+          {componentNames
+            .map((name) => `import { ${name} } from '@base_ui/react/${name}';`)
+            .join('\n')}
+        </CodeBlock.Pre>
+      </CodeBlock.Root>
     </React.Fragment>
   );
 }
