@@ -9,6 +9,7 @@ let restore: () => void = () => {};
 
 function preventScrollIOS(referenceElement?: Element | null) {
   const doc = ownerDocument(referenceElement);
+  const html = doc.documentElement;
   const body = doc.body;
   const bodyStyle = body.style;
 
@@ -27,17 +28,36 @@ function preventScrollIOS(referenceElement?: Element | null) {
     overflowY: bodyStyle.overflowY,
   };
 
-  Object.assign(bodyStyle, {
-    position: 'fixed',
-    top: `${-(scrollY - Math.floor(offsetTop))}px`,
-    left: `${-(scrollX - Math.floor(offsetLeft))}px`,
-    right: '0',
-    overflow: 'hidden',
+  // console.log('render');
+  // html.setAttribute('data-scroll-locked', '');
+
+  requestAnimationFrame(() => {
+    console.log('raf 1-1');
+    requestAnimationFrame(() => {
+      console.log('raf 1-2');
+      Object.assign(bodyStyle, {
+        position: 'fixed',
+        top: `${-(scrollY - Math.floor(offsetTop))}px`,
+        left: `${-(scrollX - Math.floor(offsetLeft))}px`,
+        right: '0',
+        overflow: 'hidden',
+      });
+
+      html.setAttribute('data-scroll-locked', '');
+    });
   });
 
   return () => {
-    Object.assign(bodyStyle, originalBodyStyles);
-    window.scrollTo(scrollX, scrollY);
+    console.log('return');
+    requestAnimationFrame(() => {
+      console.log('raf 2-1');
+      Object.assign(bodyStyle, originalBodyStyles);
+      window.scrollTo(scrollX, scrollY);
+      requestAnimationFrame(() => {
+        console.log('raf 2-2');
+        html.removeAttribute('data-scroll-locked');
+      });
+    });
   };
 }
 
@@ -53,6 +73,7 @@ function preventScrollStandard(referenceElement?: Element | null) {
   let scrollY: number;
 
   function lockScroll() {
+    html.setAttribute('data-scroll-locked', '');
     const htmlComputedStyles = getComputedStyle(html);
     const bodyComputedStyles = getComputedStyle(body);
     const hasConstantOverflowY =
@@ -146,14 +167,16 @@ export function useScrollLock(enabled: boolean = true, referenceElement?: Elemen
 
     preventScrollCount += 1;
     if (preventScrollCount === 1) {
-      restore = isIOS()
-        ? preventScrollIOS(referenceElement)
-        : preventScrollStandard(referenceElement);
+      restore = preventScrollIOS(referenceElement);
+      // restore = isIOS()
+      //   ? preventScrollIOS(referenceElement)
+      //   : preventScrollStandard(referenceElement);
     }
 
     return () => {
       preventScrollCount -= 1;
       if (preventScrollCount === 0) {
+        console.log('restore');
         restore();
       }
     };
