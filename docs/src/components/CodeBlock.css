@@ -62,7 +62,10 @@
     display: flex;
     overflow: auto;
     overscroll-behavior-x: contain;
-    scrollbar-width: thin;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     /* iOS Safari appears to flicker the scroll containers during tasking animations */
     [data-mobile-nav-open] & {
